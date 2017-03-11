@@ -7,19 +7,19 @@
 {{/parameters}}
  * 
  */
- {{&className}}.prototype.{{&methodName}} = function(parameters){
+ {{&methodName}} (parameters) {
     if(parameters === undefined) {
         parameters = {};
     }
-    var deferred = {{#isNode}}Q{{/isNode}}{{^isNode}}$q{{/isNode}}.defer();
+    const deferred = Q.defer();
     
-    var domain = this.domain;
-    var path = '{{&path}}';
+    const domain = this.domain;
+    let path = '{{&path}}';
     
-    var body;
-    var queryParameters = {};
-    var headers = {};
-    var form = {};
+    let body;
+    let queryParameters = {};
+    let headers = {};
+    let form = {};
 
     {{#isSecure}}
         if (this.token.isQuery) {
@@ -105,4 +105,4 @@
     {{> request}}
     
     return deferred.promise; 
- };
+ }

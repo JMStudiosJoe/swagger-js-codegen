@@ -1,0 +1,22 @@
+{{#imports}}
+    import {{name}} from '{{path}}';
+{{/imports}}
+
+{{#isTypeScript}}export {{/isTypeScript}}interface {{&className}} {
+{{#methods}}
+    {{&methodName}}(parameters : {
+    {{#parameters}}
+        '{{name}}'{{#isOptional}}?{{/isOptional}}: {{>type}}
+    {{/parameters}}
+    }): {{#resultFn}}{{#responseType}}{{>type}}{{/responseType}}{{^responseType}}any{{/responseType}}{{/resultFn}};
+
+{{/methods}}
+}
+
+// data types
+{{#definitions}}
+    {{#isTypeScript}}export {{/isTypeScript}}interface {{name}} {{>type}}
+
+{{/definitions}}
+
+{{#isTypeScript}}export default {{&className}}{{/isTypeScript}}
